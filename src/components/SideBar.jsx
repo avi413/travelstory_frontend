@@ -33,7 +33,8 @@ const SideBar = ({ user, closeToggle }) => {
         </Link>
         <div className='flex flex-col gap-5'>
           <NavLink
-            to='/'
+            to='/' 
+            end
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
             }
