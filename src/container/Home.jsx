@@ -47,15 +47,15 @@ function Home() {
             <img src={logo} alt='logo' className='w-28' />
           </Link>
           <Link to={`user-profile/${userInfo?._id}`}>
-            <img src={user?.image} alt={user?.userName} className='w-28' />
+            <img src={user?.image} alt={user?.userName} className='rounded-full h-12' />
           </Link>
         </div>
         {toggleSideBar && (
           <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shdow-md z-10 animate-slide-in'>
-            <div className='absolute w-full flex justifyend items-center p-2'>
+            <div className='absolute w-full flex justify-end  items-center p-2'>
               <AiFillCloseCircle
                 fontSize={30}
-                className='cursor-pointer'
+                className="cursor-pointer"
                 onClick={() => setToggleSideBar(false)}
               />
             </div>
