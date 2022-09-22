@@ -13,6 +13,7 @@ const CreatePin = ({ user }) => {
   const [destination, setDestination] = useState('');
   const [loading, setLoading] = useState(false);
   const [fields, setFields] = useState(false);
+  const [validUrl, setValidUrl] = useState(false);
   const [category, setCategory] = useState(null);
   const [imageAsset, setImageAsset] = useState(null);
   const [wrongImageType, setWrongImageType] = useState(null);
@@ -48,7 +49,16 @@ const CreatePin = ({ user }) => {
   };
 
   const savePin = () => {
-    if(title && about && category && destination && imageAsset?._id) {
+    const regex = new RegExp(
+      '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+    );
+
+    if (!regex.test(destination)) {
+      setValidUrl(true);
+      setTimeout(() => setValidUrl(false), 2000);
+      return;
+    }
+    if (title && about && category && destination && imageAsset?._id) {
       const doc = {
         _type: 'pin',
         title,
@@ -58,25 +68,24 @@ const CreatePin = ({ user }) => {
           _type: 'image',
           asset: {
             _type: 'reference',
-            _ref: imageAsset?._id
-          }
+            _ref: imageAsset?._id,
+          },
         },
         userId: user._id,
         postedBy: {
           _type: 'postedBy',
-          _ref: user._id
+          _ref: user._id,
         },
         category,
-      }
-      client.create(doc)
-      .then(() => {
+      };
+      client.create(doc).then(() => {
         navigate('/');
-      })
+      });
     } else {
       setFields(true);
-      setTimeout(() => setFields(false), 2000)
+      setTimeout(() => setFields(false), 2000);
     }
-  }
+  };
   return (
     <div className='flex flex-col justify-center items-center lg:h-4/5'>
       {fields && (
@@ -154,12 +163,17 @@ const CreatePin = ({ user }) => {
             className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2'
           />
           <input
-            type='text'
+            type='url'
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder='Add a destination link'
             className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2'
           />
+          {validUrl && (
+            <p className='text-red-500 mb-5 text-xl transition-all duration-150 ease-in'>
+              Please fill a valid url
+            </p>
+          )}
           <div className='flex flex-col'>
             <div>
               <p className='mb-2 font-semibold text0-lg sm:text-xl'>
