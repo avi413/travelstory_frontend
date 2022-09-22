@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
+import { categories } from '../utils/data';
+//import geodata  from 'full-countries-cities';
 
 import logo from '../assets/logo.png';
 
@@ -10,13 +12,10 @@ const isNotActiveStyle =
 const isActiveStyle =
   'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
 
-const categories = [
-  { name: 'cities' },
-  { name: 'nture' },
-  { name: 'drone' },
-  { name: 'others' },
-];
 
+//console.log(geodata.getCountries().filter((countery) => {
+//  return  countery.name.common === "Israel"
+//}))
 const SideBar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
