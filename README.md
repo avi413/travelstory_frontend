@@ -15,8 +15,3 @@
 ### Backend  Repository
 
 - Find on - [Sanity Backend](https://github.com/avi413/travelstory_backend)
-
-
-## React + Sanity guide
-
-This starter is based on [@Kapehe_ok's](https://twitter.com/kapehe_ok) [React + Sanity guide](https://www.sanity.io/guides/build-your-first-blog-using-react).
