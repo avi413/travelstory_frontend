@@ -44,16 +44,7 @@ function Login() {
           </div>
           <div className='shadow-2xl'>
             <GoogleLogin
-              render={(renderProps) => (
-                <button
-                  type='button'
-                  className='bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none'
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className='mr-4' /> Sign in with Google
-                </button>
-              )}
+            
               onSuccess={responsGoogle}
               onError={responsGoogle}
               cookiePolicy='single_host_origin'

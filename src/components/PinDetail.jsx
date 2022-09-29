@@ -30,7 +30,8 @@ const PinDetail = ({ user }) => {
         }
       }])
       .commit()
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         fetchPinDetails();
         setComment('');
         setAddingComment(false);
